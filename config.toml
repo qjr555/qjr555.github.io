@@ -1,0 +1,13 @@
+# 核心配置：指定网站根域名，确保静态文件生成到根目录
+baseURL = "https://qjr555.github.io/"
+languageCode = "zh-CN"  # 网站语言为中文
+title = "我的Hugo博客"   # 博客标题，可自定义
+theme = "PaperMod"      # 关联你之前安装的PaperMod主题
+
+# 主题补充配置（可选，保证页面正常显示）
+enableGitInfo = true
+[params]
+  env = "production"
+  title = "我的Hugo博客"
+  description = "用Hugo+GitHub Pages搭建的免费博客"
+  author = "qjr555"
