@@ -16,7 +16,7 @@
 - **分享卡片图片**：用 Canvas 生成 1080 × 1350 的竖版卡片 PNG。
 - **Markdown 导入**：粘贴或拖入 `.md` / `.txt` / `.json`，自动拆分、预览、合并或替换。
 - **数据属于你**：所有卡片保存在浏览器 `localStorage`，可导出 JSON / Markdown 备份。
-- **本地优先 + PWA**：无外部字体、无追踪脚本；支持离线缓存和添加到主屏幕。
+- **本地优先**：无外部字体、无追踪脚本，所有内容保存在浏览器里。
 - **夜读模式**：日间纸感 / 夜间墨色两套主题。
 
 ## 快速开始
@@ -78,8 +78,8 @@ assets/js/store.js         # localStorage 数据层
 assets/js/importer.js      # Markdown / JSON 导入解析
 assets/js/share.js         # 分享链接、压缩编码、Canvas 图片
 assets/js/app.js           # 路由、视图与交互
-manifest.webmanifest       # PWA 清单
-sw.js                      # 离线缓存
+manifest.webmanifest       # 站点清单（图标 / 主题色）
+sw.js                      # 旧版 Service Worker 清理脚本
 ```
 
 ## 部署

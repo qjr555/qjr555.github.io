@@ -1821,8 +1821,13 @@
     if (!Store.storageAvailable) toast('浏览器不允许本地存储，卡片可能无法保存', 'warn');
     renderRoute(true);
 
-    if ('serviceWorker' in navigator && location.protocol === 'https:') {
-      navigator.serviceWorker.register('sw.js').catch(function () { /* 离线缓存失败不影响使用 */ });
+    // 清理早期版本注册过的 Service Worker；当前站点不再依赖离线缓存。
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        registrations.forEach(function (registration) {
+          registration.update().catch(function () { /* 忽略更新失败 */ });
+        });
+      }).catch(function () { /* 忽略不支持的环境 */ });
     }
   }
 
