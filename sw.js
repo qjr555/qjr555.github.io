@@ -1,7 +1,7 @@
 /* 碎页集 — 离线缓存
  * 只缓存本站静态文件；卡片数据本来就在 localStorage 里。
  */
-const CACHE = 'suiyeji-v1.0.2';
+const CACHE = 'suiyeji-v1.0.3';
 const CORE = [
   './',
   './index.html',
@@ -26,20 +26,22 @@ function cacheAsset(cache, url) {
     const controller = new AbortController();
     const timer = setTimeout(() => {
       controller.abort();
-      resolve(false);
-    }, 8000);
+      resolve({ url, ok: false, error: 'timeout' });
+    }, 20000);
     fetch(url, { signal: controller.signal, cache: 'reload' })
       .then((response) => {
         clearTimeout(timer);
         if (!response || !response.ok) {
-          resolve(false);
+          resolve({ url, ok: false, status: response ? response.status : 0 });
           return;
         }
-        return cache.put(url, response).then(() => resolve(true)).catch(() => resolve(false));
+        return cache.put(url, response)
+          .then(() => resolve({ url, ok: true, status: response.status }))
+          .catch((error) => resolve({ url, ok: false, error: String(error) }));
       })
-      .catch(() => {
+      .catch((error) => {
         clearTimeout(timer);
-        resolve(false);
+        resolve({ url, ok: false, error: String(error) });
       });
   });
 }
@@ -47,8 +49,16 @@ function cacheAsset(cache, url) {
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
-    // 逐个容错，避免某个 CDN 请求卡住整套离线缓存。
-    await Promise.all(CORE.map((url) => cacheAsset(cache, url)));
+    const log = [];
+    // 串行缓存，避免 GitHub Pages/HTTP2 并发限制导致部分资源超时。
+    for (const url of CORE) {
+      log.push(await cacheAsset(cache, url));
+    }
+    try {
+      await cache.put('./__sw-status', new Response(JSON.stringify(log), {
+        headers: { 'content-type': 'application/json' }
+      }));
+    } catch (error) { /* 诊断信息写不进去也不影响站点 */ }
     await Promise.race([
       self.skipWaiting(),
       new Promise((resolve) => setTimeout(resolve, 1500))
