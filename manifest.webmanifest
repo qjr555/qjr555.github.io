@@ -1,0 +1,28 @@
+{
+  "name": "碎页集 · 碎片化知识卡片站",
+  "short_name": "碎页集",
+  "description": "一条知识，一张卡片。标签、检索、随机翻卡、Markdown 导入与公开链接分享。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4efe4",
+  "theme_color": "#bd432a",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

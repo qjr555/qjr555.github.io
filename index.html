@@ -1,223 +1,307 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
+<html lang="zh-CN" data-theme="light">
 <head>
-	<meta name="generator" content="Hugo 0.154.5"><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>我的个人博客</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>碎页集 · 把知识撕成能记住的小块</title>
+  <meta name="description" content="碎页集是一个轻量的碎片化知识卡片站：一条知识一张卡片，支持标签、检索、随机翻卡、Markdown 导入与公开链接分享。适合学生记录考点、金句和错题摘要。">
+  <meta name="keywords" content="碎页集,知识卡片,碎片化学习,错题本,复习,Markdown,学生工具">
+  <meta name="author" content="qjr555">
+  <meta name="theme-color" content="#f4efe4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#171512" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://qjr555.github.io/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <link rel="manifest" href="manifest.webmanifest">
 
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="canonical" href="https://qjr555.github.io/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://qjr555.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://qjr555.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://qjr555.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://qjr555.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://qjr555.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://qjr555.github.io/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="https://qjr555.github.io/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://qjr555.github.io/">
-  <meta property="og:site_name" content="我的个人博客">
-  <meta property="og:title" content="我的个人博客">
-  <meta property="og:locale" content="zh-CN">
   <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的个人博客">
-<meta name="twitter:description" content="">
+  <meta property="og:site_name" content="碎页集">
+  <meta property="og:title" content="碎页集 · 把知识撕成能记住的小块">
+  <meta property="og:description" content="一条知识，一张卡片。标签、检索、随机翻卡、Markdown 导入与链接分享。">
+  <meta property="og:url" content="https://qjr555.github.io/">
+  <meta property="og:image" content="https://qjr555.github.io/assets/img/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="碎页集 · 把知识撕成能记住的小块">
+  <meta name="twitter:description" content="一条知识，一张卡片。适合学生的碎片化知识卡片站。">
+  <meta name="twitter:image" content="https://qjr555.github.io/assets/img/og-cover.png">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "我的个人博客",
-  "url": "https://qjr555.github.io/",
-  "description": "",
-  "logo": "https://qjr555.github.io/favicon.ico",
-  "sameAs": [
-      
-  ]
-}
-</script>
+  <script>
+    // 在样式加载前确定主题，避免闪白。
+    (function () {
+      try {
+        var saved = localStorage.getItem('suiyeji.theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.dataset.theme = saved;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      } catch (error) { /* 本地存储不可用时使用默认主题 */ }
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "碎页集",
+    "url": "https://qjr555.github.io/",
+    "description": "碎片化知识卡片站，一条知识一张卡片，支持标签、检索、随机翻卡、Markdown 导入与链接分享。",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "zh-CN",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+  }
+  </script>
 </head>
-<body class="list" id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://qjr555.github.io/" accesskey="h" title="我的个人博客 (Alt + H)">我的个人博客</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-        </ul>
-    </nav>
-</header>
-<main class="main"> 
+<body>
+  <a class="skip-link" href="#app">跳到主要内容</a>
 
-<article class="first-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">我的第一篇博客
-    </h2>
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 7h3.5c4.5 0 6.5 10 11 10H21"/><path d="m18 14 3 3-3 3"/><path d="M3 17h3.5c1.4 0 2.6-1 3.7-2.4"/><path d="M13.2 8.7C14 7.6 15 7 16.2 7H21"/><path d="m18 4 3 3-3 3"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.6 13.7 20.5a2 2 0 0 1-2.8 0l-7.4-7.4a2 2 0 0 1-.6-1.4V4.5a1 1 0 0 1 1-1h7.2a2 2 0 0 1 1.4.6l7.1 7.1a2 2 0 0 1 0 2.8Z"/><circle cx="7.8" cy="7.8" r="1.2"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 15v4a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M13.5 5.5 18.5 10.5"/><path d="M4 20l1.2-5.1L16.5 3.6a2 2 0 0 1 2.9 0l1 1a2 2 0 0 1 0 2.9L9.1 18.8 4 20Z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5M14 11v5"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.4l6.1-.9L12 3Z"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.3-2.3a4 4 0 0 0-5.7-5.7L11.5 6.8"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0l-2.3 2.3a4 4 0 0 0 5.7 5.7l1.3-1.3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="1.5"/><path d="m21 15-5-5L5 20"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.7 4.8L18.5 9.5l-4.8 1.7L12 16l-1.7-4.8L5.5 9.5l4.8-1.7L12 3Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5Z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z"/><path d="M4 18.5V21h16"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.8 20h18.4L12 3Z"/><path d="M12 9v5M12 17h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M8.5 14.5A6 6 0 1 1 15.5 14.5C14.5 15.3 14 16 14 18h-4c0-2-.5-2.7-1.5-3.5Z"/></symbol>
+    <symbol id="i-quote" viewBox="0 0 24 24"><path d="M10 11H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v7c0 2.5-1.5 4-4 5"/><path d="M20 11h-5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v7c0 2.5-1.5 4-4 5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2-6-2.5M15 21v-3.4c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.7 4.7 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6.4 0C6.4 2.9 5.4 3.2 5.4 3.2a4.3 4.3 0 0 0-.1 3.2A4.7 4.7 0 0 0 4 9.6c0 4.6 2.7 5.7 5.5 6-.4.4-.5.9-.5 1.4V21"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="m3 3 18 18"/><path d="M10.6 6.1A10 10 0 0 1 12 6c6.5 0 10 6 10 6a18 18 0 0 1-2.2 2.8M6.2 6.2C3.5 8 2 12 2 12s3.5 6 10 6c1.2 0 2.3-.2 3.3-.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+  </svg>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#/home" aria-label="碎页集首页">
+        <span class="brand-mark" aria-hidden="true">碎</span>
+        <span class="brand-text">
+          <span class="brand-name">碎页集</span>
+          <span class="brand-sub">SUIYEJI · 知识碎片</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="主导航">
+        <a href="#/home" data-nav="home"><svg class="icon"><use href="#i-grid"/></svg><span>卡片集</span></a>
+        <a href="#/random" data-nav="random"><svg class="icon"><use href="#i-shuffle"/></svg><span>随机翻卡</span></a>
+        <a href="#/tags" data-nav="tags"><svg class="icon"><use href="#i-tag"/></svg><span>标签</span></a>
+        <a href="#/import" data-nav="import"><svg class="icon"><use href="#i-upload"/></svg><span>导入</span></a>
+        <a href="#/about" data-nav="about"><svg class="icon"><use href="#i-info"/></svg><span>关于</span></a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="切换夜读模式" title="切换夜读模式">
+          <svg class="icon icon-moon"><use href="#i-moon"/></svg>
+          <svg class="icon icon-sun"><use href="#i-sun"/></svg>
+        </button>
+        <button class="btn btn-ink btn-small" type="button" data-action="new">
+          <svg class="icon"><use href="#i-plus"/></svg><span>记一张</span>
+        </button>
+      </div>
+    </div>
   </header>
-  <div class="entry-content">
-    <p>这是我用 Hugo &#43; PaperMod 搭建的第一篇博客！
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-18 10:00:00 +0800 CST'>January 18, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 我的第一篇博客" href="https://qjr555.github.io/posts/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"></a>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://qjr555.github.io/">我的个人博客</a></span> · 
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+  <main id="app" tabindex="-1">
+    <div class="boot">
+      <span class="boot-mark">碎</span>
+      <p>正在摊开卡片…</p>
+    </div>
+  </main>
 
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-seal">碎</span>
+        <div>
+          <strong>碎页集</strong>
+          <p>一条知识，一张卡片。适合装进口袋的碎片知识库。</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#/home">卡片集</a>
+        <a href="#/random">翻卡复习</a>
+        <a href="#/import">导入 Markdown</a>
+        <a href="#/about">关于与备份</a>
+        <a href="https://github.com/qjr555/qjr555.github.io" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <div class="footer-meta">
+        <span>© <span id="footerYear">2026</span> 碎页集</span>
+        <span>内容保存在你的浏览器里</span>
+        <a href="#app">回到顶部 ↑</a>
+      </div>
+    </div>
+  </footer>
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
+  <dialog class="sheet editor-sheet" id="editorDialog" aria-labelledby="editorHeading">
+    <form id="cardForm" novalidate>
+      <div class="sheet-head">
+        <div>
+          <p class="kicker" id="editorKicker">NEW FRAGMENT</p>
+          <h2 id="editorHeading">记一张碎片</h2>
+        </div>
+        <button class="icon-btn" type="button" data-close-dialog aria-label="关闭">
+          <svg class="icon"><use href="#i-x"/></svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <input type="hidden" id="cardId" value="">
+        <label class="field">
+          <span class="field-label">标题 <em>一句话抓住它</em></span>
+          <input id="cardTitle" name="title" type="text" maxlength="80" autocomplete="off" placeholder="例如：楞次定律怎么快速判断？">
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span class="field-label">卡片类型</span>
+            <span class="select-wrap">
+              <select id="cardKind" name="kind">
+                <option value="note">笔记</option>
+                <option value="concept">概念</option>
+                <option value="mistake">错题</option>
+                <option value="method">方法</option>
+                <option value="quote">金句</option>
+              </select>
+              <svg class="icon"><use href="#i-chevron-down"/></svg>
+            </span>
+          </label>
+          <label class="field">
+            <span class="field-label">科目</span>
+            <span class="select-wrap">
+              <select id="cardSubject" name="subject">
+                <option value="数学">数学</option>
+                <option value="语文">语文</option>
+                <option value="英语">英语</option>
+                <option value="物理">物理</option>
+                <option value="化学">化学</option>
+                <option value="生物">生物</option>
+                <option value="历史">历史</option>
+                <option value="地理">地理</option>
+                <option value="政治">政治</option>
+                <option value="方法">方法</option>
+                <option value="心态">心态</option>
+                <option value="其他">其他</option>
+              </select>
+              <svg class="icon"><use href="#i-chevron-down"/></svg>
+            </span>
+          </label>
+        </div>
+        <label class="field">
+          <span class="field-label">标签 <em>用空格或逗号分隔，最多 8 个</em></span>
+          <input id="cardTags" name="tags" type="text" maxlength="120" autocomplete="off" placeholder="数学 函数 易错">
+        </label>
+        <div class="field">
+          <div class="field-label-row">
+            <span class="field-label">正文 <em>支持 Markdown</em></span>
+            <button class="text-btn" type="button" id="previewToggle">
+              <svg class="icon"><use href="#i-eye"/></svg><span>预览</span>
+            </button>
+          </div>
+          <textarea id="cardContent" name="content" rows="8" maxlength="4000" placeholder="写下一条你真正想记住的东西。&#10;&#10;支持 **粗体**、`代码`、- 列表、> 引用、$公式$。"></textarea>
+          <div id="editorPreview" class="md editor-preview" hidden></div>
+          <div class="field-foot">
+            <span id="contentCount">0 / 4000</span>
+            <div class="tag-suggestions" id="tagSuggestions"></div>
+          </div>
+        </div>
+        <p class="form-hint">
+          <kbd>Ctrl</kbd> + <kbd>Enter</kbd> 保存
+          <span class="dot-sep">·</span>
+          卡片只保存在本机浏览器，分享时再生成公开链接
+        </p>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn btn-ghost" type="button" data-close-dialog>取消</button>
+        <button class="btn btn-accent" type="submit" id="saveCardBtn">
+          <svg class="icon"><use href="#i-check"/></svg><span>收进卡片集</span>
+        </button>
+      </div>
+    </form>
+  </dialog>
 
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
+  <dialog class="sheet share-sheet" id="shareDialog" aria-labelledby="shareHeading">
+    <div class="sheet-head">
+      <div>
+        <p class="kicker">SHARE A FRAGMENT</p>
+        <h2 id="shareHeading">公开这张卡片</h2>
+      </div>
+      <button class="icon-btn" type="button" data-close-dialog aria-label="关闭">
+        <svg class="icon"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <div class="sheet-body">
+      <div class="share-preview" id="sharePreview"></div>
+      <label class="field">
+        <span class="field-label">分享链接 <em>拿到链接的人都能打开</em></span>
+        <span class="copy-field">
+          <input id="shareUrl" type="text" readonly value="正在生成…">
+          <button class="btn btn-ink btn-small" type="button" id="copyShareBtn">
+            <svg class="icon"><use href="#i-copy"/></svg><span>复制</span>
+          </button>
+        </span>
+      </label>
+      <div class="share-actions">
+        <button class="btn btn-ghost" type="button" id="downloadImageBtn">
+          <svg class="icon"><use href="#i-image"/></svg><span>下载卡片图片</span>
+        </button>
+        <button class="btn btn-ghost" type="button" id="nativeShareBtn">
+          <svg class="icon"><use href="#i-share"/></svg><span>系统分享</span>
+        </button>
+      </div>
+      <p class="share-note">
+        <svg class="icon"><use href="#i-info"/></svg>
+        内容压缩后编码在链接里，不经过服务器，也不需要登录。链接很长是正常的。
+      </p>
+    </div>
+  </dialog>
 
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
+  <dialog class="sheet confirm-sheet" id="confirmDialog" aria-labelledby="confirmHeading">
+    <div class="confirm-mark" aria-hidden="true">!</div>
+    <h2 id="confirmHeading">确认删除？</h2>
+    <p id="confirmText">删除后就找不回来了。</p>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" type="button" data-confirm="no">取消</button>
+      <button class="btn btn-danger" type="button" data-confirm="yes">确认删除</button>
+    </div>
+  </dialog>
 
-</script>
+  <div class="toast-region" id="toastRegion" role="status" aria-live="polite" aria-atomic="false"></div>
+
+  <noscript>
+    <div class="noscript-note">
+      <h1>碎页集</h1>
+      <p>这是一个碎片化知识卡片站。需要启用 JavaScript 才能记录、检索和翻卡。</p>
+    </div>
+  </noscript>
+
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/markdown.js" defer></script>
+  <script src="assets/js/store.js" defer></script>
+  <script src="assets/js/importer.js" defer></script>
+  <script src="assets/js/share.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
 </body>
-<iframe width="1080" height="780"rameborder="0"src="https://www.bilibili.com/video/BV1yVHHzzExq?t=1.3""></iframe>
 </html>
