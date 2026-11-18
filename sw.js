@@ -1,7 +1,7 @@
 /* 碎页集 — 离线缓存
  * 只缓存本站静态文件；卡片数据本来就在 localStorage 里。
  */
-const CACHE = 'suiyeji-v1.0.1';
+const CACHE = 'suiyeji-v1.0.2';
 const CORE = [
   './',
   './index.html',
@@ -21,10 +21,39 @@ const CORE = [
   './assets/img/icon-512.png'
 ];
 
+function cacheAsset(cache, url) {
+  return new Promise((resolve) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => {
+      controller.abort();
+      resolve(false);
+    }, 8000);
+    fetch(url, { signal: controller.signal, cache: 'reload' })
+      .then((response) => {
+        clearTimeout(timer);
+        if (!response || !response.ok) {
+          resolve(false);
+          return;
+        }
+        return cache.put(url, response).then(() => resolve(true)).catch(() => resolve(false));
+      })
+      .catch(() => {
+        clearTimeout(timer);
+        resolve(false);
+      });
+  });
+}
+
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(CORE)).then(() => self.skipWaiting())
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE);
+    // 逐个容错，避免某个 CDN 请求卡住整套离线缓存。
+    await Promise.all(CORE.map((url) => cacheAsset(cache, url)));
+    await Promise.race([
+      self.skipWaiting(),
+      new Promise((resolve) => setTimeout(resolve, 1500))
+    ]);
+  })());
 });
 
 self.addEventListener('activate', (event) => {
