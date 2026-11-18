@@ -814,6 +814,72 @@ button.tag-pill:hover { background: var(--accent-soft); color: var(--accent-dark
   white-space: nowrap;
 }
 
+.scope-switch {
+  display: inline-flex;
+  gap: 3px;
+  padding: 4px;
+  margin-bottom: 15px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper-3);
+  box-shadow: inset 0 1px 2px rgba(65, 51, 31, 0.04);
+}
+.scope-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+.scope-tab .icon { width: 14px; height: 14px; color: var(--faint); }
+.scope-tab b {
+  min-width: 20px;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: rgba(65, 51, 31, 0.08);
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+}
+.scope-tab:hover { color: var(--ink); }
+.scope-tab:hover .icon { color: var(--muted); }
+.scope-tab.is-active {
+  border-color: var(--line);
+  background: var(--paper-2);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+.scope-tab.is-active .icon { color: var(--accent); }
+.scope-tab.is-active b { background: var(--accent); color: #fff9ee; }
+[data-theme="dark"] .scope-tab.is-active b { color: #fff9ee; }
+
+.count-badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  margin-left: 2px;
+  border-radius: 999px;
+  background: rgba(65, 51, 31, 0.08);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .search-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto auto;
@@ -1090,6 +1156,7 @@ button.tag-pill:hover { background: var(--accent-soft); color: var(--accent-dark
 .demo-note {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 7px;
   margin-top: 18px;
   padding-top: 15px;
@@ -1098,6 +1165,7 @@ button.tag-pill:hover { background: var(--accent-soft); color: var(--accent-dark
   font-size: 10px;
 }
 .demo-note .icon { width: 13px; height: 13px; color: var(--gold); }
+.demo-note .text-btn { margin-left: auto; font-size: 10px; }
 
 /* ---------------- 空状态 ---------------- */
 
@@ -2252,6 +2320,8 @@ dialog.sheet[open] { animation: dialog-in 0.24s ease both; }
   .stat span { font-size: 8px; white-space: normal; line-height: 1.3; }
   .collection { padding-top: 42px; }
   .section-heading h2 { font-size: 29px; }
+  .scope-switch { display: flex; width: 100%; margin-bottom: 12px; }
+  .scope-tab { flex: 1; justify-content: center; padding: 8px 6px; }
   .search-row { grid-template-columns: 1fr auto auto; }
   .search-field { grid-column: 1 / -1; }
   .search-field input { height: 46px; }

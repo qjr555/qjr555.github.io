@@ -17,6 +17,7 @@
     query: '',
     tag: '',
     subject: '',
+    scope: 'all',
     sort: 'newest',
     layout: Store.data.settings.layout === 'list' ? 'list' : 'grid',
     limit: 30,
@@ -139,6 +140,7 @@
     const query = ui.query.trim().toLowerCase();
     const terms = query ? query.split(/\s+/).filter(Boolean) : [];
     let cards = Store.cards().filter(function (card) {
+      if (ui.scope === 'mine' && card.demo) return false;
       if (ui.tag && card.tags.indexOf(ui.tag) < 0) return false;
       if (ui.subject && card.subject !== ui.subject) return false;
       if (!terms.length) return true;
@@ -250,6 +252,7 @@
     const subjectCounts = Store.subjectCounts();
     const today = Store.today();
     const demoCount = cards.filter(function (card) { return card.demo; }).length;
+    const mineCount = cards.length - demoCount;
     const allTags = tagCounts.slice(0, 12);
     if (ui.tag && !allTags.some(function (item) { return item.tag === ui.tag; })) {
       const active = tagCounts.find(function (item) { return item.tag === ui.tag; });
@@ -257,7 +260,7 @@
     }
 
     const tagChips = [
-      '<button class="chip ' + (!ui.tag ? 'is-active' : '') + '" type="button" data-tag="">全部<sup>' + cards.length + '</sup></button>'
+      '<button class="chip ' + (!ui.tag ? 'is-active' : '') + '" type="button" data-tag="">全部标签</button>'
     ].concat(allTags.map(function (item) {
       return '<button class="chip ' + (ui.tag === item.tag ? 'is-active' : '') + '" type="button" data-tag="' + esc(item.tag) + '">#' + esc(item.tag) + '<sup>' + item.count + '</sup></button>';
     })).join('');
@@ -306,6 +309,10 @@
       '    </div>',
       '    <p class="result-count" id="resultCount" aria-live="polite"></p>',
       '  </div>',
+      '  <div class="scope-switch" role="group" aria-label="卡片范围">',
+      '    <button class="scope-tab ' + (ui.scope !== 'mine' ? 'is-active' : '') + '" type="button" aria-pressed="' + (ui.scope !== 'mine' ? 'true' : 'false') + '" data-scope="all">' + icon('grid') + '<span>全部卡片</span><b>' + cards.length + '</b></button>',
+      '    <button class="scope-tab ' + (ui.scope === 'mine' ? 'is-active' : '') + '" type="button" aria-pressed="' + (ui.scope === 'mine' ? 'true' : 'false') + '" data-scope="mine">' + icon('pen') + '<span>我的卡片</span><b>' + mineCount + '</b></button>',
+      '  </div>',
       '  <div class="search-row">',
       '    <label class="search-field">',
       icon('search'),
@@ -332,7 +339,7 @@
       '  <div class="filter-summary" id="filterSummary"></div>',
       '  <div class="card-grid layout-' + ui.layout + '" id="cardGrid"></div>',
       '  <div class="load-more-wrap" id="loadMoreWrap"></div>',
-      demoCount ? '  <p class="demo-note">' + icon('spark') + '已放入 ' + demoCount + ' 张示例卡，直接编辑、删除，或去「关于」里清空它们。</p>' : '',
+      demoCount ? '  <p class="demo-note">' + icon('spark') + '已放入 ' + demoCount + ' 张示例卡，直接编辑、删除，或去「关于」里清空它们。' + (ui.scope !== 'mine' ? '<button class="text-btn" type="button" data-scope="mine">只看我的卡片 ' + icon('arrow-right') + '</button>' : '') + '</p>' : '',
       '</section>'
     ].join('\n');
   }
@@ -342,19 +349,33 @@
     if (!grid) return;
     const results = filteredCards();
     const shown = results.slice(0, ui.limit);
+    const allCards = Store.cards();
+    const mineCount = allCards.filter(function (card) { return !card.demo; }).length;
+    const emptyMine = ui.scope === 'mine' && mineCount === 0;
+    const emptyAll = allCards.length === 0;
     grid.className = 'card-grid layout-' + ui.layout;
     if (!shown.length) {
-      const isFiltered = ui.query || ui.tag || ui.subject;
+      let mark = '空';
+      let heading = '卡片集还是空的';
+      let copy = '先写一张，哪怕只有一句话。';
+      let actions = '<button class="btn btn-accent" type="button" data-action="new">' + icon('plus') + '记第一张</button><a class="btn btn-ghost" href="#/import">' + icon('upload') + '导入 Markdown</a>';
+      if (emptyMine) {
+        mark = '我';
+        heading = '还没有属于你的卡片';
+        copy = '示例卡只是引子。写一张自己的，或者把旧笔记导进来。';
+        actions = '<button class="btn btn-accent" type="button" data-action="new">' + icon('plus') + '记一张</button><a class="btn btn-ghost" href="#/import">' + icon('upload') + '导入 Markdown</a><button class="btn btn-ghost" type="button" data-scope="all">先看看示例</button>';
+      } else if (!emptyAll) {
+        mark = '?';
+        heading = '没有找到这张碎片';
+        copy = '换个关键词，或者把筛选清掉试试。';
+        actions = '<button class="btn btn-ghost" type="button" data-action="clear-filters">清掉筛选</button>';
+      }
       grid.innerHTML = [
         '<div class="empty-state">',
-        '  <div class="empty-mark">' + (isFiltered ? '?' : '空') + '</div>',
-        '  <h3>' + (isFiltered ? '没有找到这张碎片' : '卡片集还是空的') + '</h3>',
-        '  <p>' + (isFiltered ? '换个关键词，或者把筛选清掉试试。' : '先写一张，哪怕只有一句话。') + '</p>',
-        '  <div class="empty-actions">',
-        isFiltered
-          ? '<button class="btn btn-ghost" type="button" data-action="clear-filters">清掉筛选</button>'
-          : '<button class="btn btn-accent" type="button" data-action="new">' + icon('plus') + '记第一张</button><a class="btn btn-ghost" href="#/import">' + icon('upload') + '导入 Markdown</a>',
-        '  </div>',
+        '  <div class="empty-mark">' + mark + '</div>',
+        '  <h3>' + heading + '</h3>',
+        '  <p>' + copy + '</p>',
+        '  <div class="empty-actions">' + actions + '</div>',
         '</div>'
       ].join('\n');
     } else {
@@ -362,17 +383,18 @@
     }
 
     const count = $('#resultCount');
-    if (count) count.textContent = results.length + ' 张' + (ui.tag || ui.subject || ui.query ? ' 符合条件' : '');
+    if (count) count.textContent = (ui.scope === 'mine' ? '我的 ' : '') + results.length + ' 张' + (ui.tag || ui.subject || ui.query ? ' 符合条件' : '');
 
     const summary = $('#filterSummary');
     if (summary) {
       const bits = [];
+      if (ui.scope === 'mine') bits.push('我的卡片');
       if (ui.query) bits.push('关键词「' + esc(ui.query) + '」');
       if (ui.tag) bits.push('#' + esc(ui.tag));
       if (ui.subject) bits.push(esc(ui.subject));
       summary.innerHTML = bits.length
         ? '<span>正在看：' + bits.join(' + ') + '</span><button type="button" class="text-btn" data-action="clear-filters">清除筛选 ' + icon('x') + '</button>'
-        : '<span>全部 ' + Store.cards().length + ' 张碎片 · 点击卡片展开全文</span><span class="summary-hint">' + icon('spark') + '按 / 快速搜索</span>';
+        : '<span>全部 ' + allCards.length + ' 张碎片 · 点击卡片展开全文</span><span class="summary-hint">' + icon('spark') + '按 / 快速搜索</span>';
     }
 
     const filters = $('#tagFilters');
@@ -382,9 +404,19 @@
         button.classList.toggle('is-active', (button.getAttribute('data-tag') || '') === activeTag);
       });
     }
+    $$('.scope-tab').forEach(function (button) {
+      const active = button.getAttribute('data-scope') === ui.scope;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+      const badge = button.querySelector('b');
+      if (badge) badge.textContent = button.getAttribute('data-scope') === 'mine' ? mineCount : allCards.length;
+    });
 
     const clear = $('.search-clear');
     if (clear) clear.classList.toggle('is-visible', Boolean(ui.query));
+
+    const demoAction = $('.demo-note [data-scope="mine"]');
+    if (demoAction) demoAction.hidden = ui.scope === 'mine';
 
     const loadMore = $('#loadMoreWrap');
     if (loadMore) {
@@ -428,6 +460,7 @@
     const history = Store.history(14);
     const maxHeat = history.reduce(function (maxValue, item) { return Math.max(maxValue, item.drawn); }, 1);
     const total = Store.totalReviews();
+    const mineCount = Store.cards().filter(function (card) { return !card.demo; }).length;
 
     const cloud = tags.map(function (item) {
       const weight = 1 + (item.count / max) * 1.35;
@@ -468,7 +501,7 @@
     }).join('');
 
     return [
-      pageHead('TAG INDEX', '标签抽屉', '把碎片按主题收进同一个抽屉。一个标签，就是一条复习线索。'),
+      pageHead('TAG INDEX', '标签抽屉', '把碎片按主题收进同一个抽屉。一个标签，就是一条复习线索。', '<button class="btn btn-ghost btn-small" type="button" data-scope="mine">' + icon('pen') + '我的卡片 <span class="count-badge">' + mineCount + '</span></button>'),
       '<section class="tag-cloud panel page-enter">' + cloud + '</section>',
       '<div class="tags-columns page-enter">',
       '  <section class="panel">',
@@ -575,6 +608,7 @@
 
   function randomPool(scope) {
     const cards = Store.cards();
+    if (scope === 'mine') return cards.filter(function (card) { return !card.demo; });
     if (scope === 'favorites') return cards.filter(function (card) { return card.favorite; });
     if (scope.indexOf('subject:') === 0) {
       const subject = scope.slice(8);
@@ -629,6 +663,7 @@
   function randomScopeOptions() {
     const options = [
       { value: 'all', label: '全部卡片' },
+      { value: 'mine', label: '我的卡片' },
       { value: 'favorites', label: '我的收藏' }
     ];
     Store.subjectCounts().forEach(function (item) {
@@ -1043,9 +1078,7 @@
       return;
     }
     if (editingId) {
-      if (route.name === 'card') renderRoute();
-      else if (route.name === 'home') refreshCollection();
-      else renderRoute();
+      renderRoute();
     } else {
       go('#/card/' + encodeURIComponent(saved.id));
     }
@@ -1301,6 +1334,7 @@
         ui.query = '';
         ui.tag = '';
         ui.subject = '';
+        ui.scope = 'all';
         ui.limit = 30;
         if ($('#searchInput')) $('#searchInput').value = '';
         if ($('#subjectFilter')) $('#subjectFilter').value = '';
@@ -1553,9 +1587,25 @@
         return;
       }
 
+      const scopeButton = event.target.closest('[data-scope]');
+      if (scopeButton) {
+        ui.scope = scopeButton.getAttribute('data-scope') === 'mine' ? 'mine' : 'all';
+        ui.tag = '';
+        ui.subject = '';
+        ui.limit = 30;
+        if (route.name !== 'home') go('#/home');
+        else {
+          refreshCollection();
+          const section = $('#collection');
+          if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        return;
+      }
+
       const tagButton = event.target.closest('[data-tag]');
       if (tagButton) {
         const tag = tagButton.getAttribute('data-tag') || '';
+        if (route.name === 'tags') ui.scope = 'all';
         ui.tag = tag;
         ui.subject = '';
         ui.limit = 30;
@@ -1570,6 +1620,7 @@
 
       const subjectButton = event.target.closest('[data-subject]');
       if (subjectButton) {
+        if (route.name === 'tags') ui.scope = 'all';
         ui.subject = subjectButton.getAttribute('data-subject') || '';
         ui.tag = '';
         ui.limit = 30;

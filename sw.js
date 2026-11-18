@@ -1,7 +1,7 @@
 /* 碎页集 — 离线缓存
  * 只缓存本站静态文件；卡片数据本来就在 localStorage 里。
  */
-const CACHE = 'suiyeji-v1.0.0';
+const CACHE = 'suiyeji-v1.0.1';
 const CORE = [
   './',
   './index.html',

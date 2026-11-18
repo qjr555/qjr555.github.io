@@ -213,7 +213,7 @@
       const next = normalizeCard(Object.assign({}, current, patch, {
         id: current.id,
         createdAt: current.createdAt,
-        demo: current.demo
+        demo: false
       }));
       if (!next) return null;
       next.updatedAt = new Date().toISOString();
